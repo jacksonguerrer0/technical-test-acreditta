@@ -4,12 +4,15 @@ import { useSelector } from 'react-redux'
 import './list-hero-style/listHero.css'
 
 const ListHero = () => {
-  const {listHeroes} = useSelector(state => state.heroes)
-  const [heroes, setHeroes] = useState(listHeroes)
+  const {renderHeroes, habilitiesOrderAZ, appearanceOrderAZ} = useSelector(state => state.heroes)
+  const [heroes, setHeroes] = useState([])
+
+  // const HabilitiesOrderRender = () => {
+    
+  // }
   useEffect(() => {
-    setHeroes(listHeroes.slice(0,100))
-  }, [listHeroes])
-  console.log(heroes)
+    setHeroes(renderHeroes)
+  }, [renderHeroes])
   return (
     <section className='col-12 m-auto row container-card'>
       {
@@ -25,16 +28,24 @@ const ListHero = () => {
             <ListGroup className="list-group-flush mb-1">
               <details>
                 <summary><b>Habilidades</b></summary>
-                <p>Inteligencia: {habilities.intelligence} </p>
-                <p>Fuerza: {habilities.strength}</p>
-                <p>Velocidad: {habilities.speed}</p>
-                <p>Durabilidad: {habilities.durability}</p>
-                <p>Poder: {habilities.power}</p>
-                <p>Combate: {habilities.combat}</p>
+                {/* {
+                  habilitiesOrderAZ ? 
+                } */}
+                <p>Inteligencia: {habilities.intelligence}. </p>
+                <p>Fuerza: {habilities.strength}.</p>
+                <p>Velocidad: {habilities.speed}.</p>
+                <p>Durabilidad: {habilities.durability}.</p>
+                <p>Poder: {habilities.power}.</p>
+                <p>Combate: {habilities.combat}.</p>
               </details>
               <details>
                 <summary><b>Apariencia</b></summary>
-                <p></p>
+                <p>Genero: {appearance.gender}.</p>
+                <p>Raza: {appearance.race}.</p>
+                <p>Altura: {appearance.height[1]}.</p>
+                <p>Peso: {appearance.weight[1]}.</p>
+                <p>Color de ojos: {appearance['eye-color']}</p>
+                <p>Color de cabello: {appearance['hair-color']}</p>
               </details>
             </ListGroup>
           </Card>

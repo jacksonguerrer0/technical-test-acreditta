@@ -6,7 +6,6 @@ import { getSuperHero } from '../services/api_hero'
 import './style-home/styleHome.css'
 const Home = () => {
   const dispatch = useDispatch()
-  const {listHeroes} = useSelector(state => state.heroes)
 
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Home = () => {
       <section className='hero-img'>
         <h1>Encuentra tu <br /> SúperHeroe😎</h1>
       </section>
-      <section className='container-md mt-5'>
+      <section className='container-md mt-5 mb-5'>
           <Search  />
           <ListHero  />
       </section>
