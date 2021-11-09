@@ -1,20 +1,28 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ListHero from '../components/ListHero'
+import Search from '../components/Search'
 import { getSuperHero } from '../services/api_hero'
-
+import './style-home/styleHome.css'
 const Home = () => {
   const dispatch = useDispatch()
   const {listHeroes} = useSelector(state => state.heroes)
 
-  
+
   useEffect(() => {
       getSuperHero(dispatch)
   }, [dispatch])
 
   return (
-    <div>
-      <h1>Bienvenidos a Api Hero</h1>
-    </div>
+    <main className='container-fluid p-0'>
+      <section className='hero-img'>
+        <h1>Encuentra tu <br /> SúperHeroe😎</h1>
+      </section>
+      <section className='container-md mt-5'>
+          <Search  />
+          <ListHero  />
+      </section>
+    </main>
   )
 }
 
