@@ -6,7 +6,8 @@ const initialState = {
   listHeroes: [],
   renderHeroes: [],
   habilitiesOrderAZ: true,
-  appearanceOrderAZ: true
+  appearanceOrderAZ: true,
+  resSearch: ''
 }
 
 // Reducer
@@ -18,10 +19,15 @@ const heroDucks = (state = initialState, action) => {
         listHeroes : action.payload,
         renderHeroes: action.payload
       }
-    case types.getSearch:
+    case types.getResSearch:
       return {
         ...state,
-        renderHeroes: action.payload
+        resSearch: action.payload,
+      }
+    case types.getSearch:
+      return{
+        ...state,
+        renderHeroes: action.payload,
       }
     case types.habilitiesOrderAZ:
       return {
@@ -48,7 +54,11 @@ export const listHero = (list) => ({
 })
 export const listSearchHero = (list) => ({
   type: types.getSearch,
-  payload: list
+  payload: list,
+})
+export const getResSearch = (res) => ({
+  type: types.getResSearch,
+  payload: res
 })
 export const habilitiesOrderAZ = (res) => ({
   type: types.habilitiesOrderAZ,
