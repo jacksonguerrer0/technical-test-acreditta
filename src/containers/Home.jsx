@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ListHero from '../components/ListHero'
 import Search from '../components/Search'
 import { getSuperHero } from '../services/api_hero'

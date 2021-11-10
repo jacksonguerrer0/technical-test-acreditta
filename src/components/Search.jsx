@@ -6,6 +6,11 @@ import { getSearchSuperHero } from '../services/api_hero';
 
 const Search = () => {
   const [search, setSearch] = useState('Batman');
+  const [iconDown, setIconDown] = useState({
+    habilities: true,
+    appareance: true,
+  })
+
   const heroesStore = useSelector(state => state.heroes)
   const dispatch = useDispatch()
   const handleSearch = (e) => {
@@ -14,10 +19,12 @@ const Search = () => {
   const handleClickSearch = () => {
     getSearchSuperHero(search, dispatch)
   }
-  const handleHabilitiesOrder = () => {
+  const handleHabilitiesOrder = (e) => {
+    setIconDown({...iconDown, habilities: !(iconDown.habilities)})
     dispatch(habilitiesOrderAZ(!(heroesStore.habilitiesOrderAZ)))
   }
   const handleAppearanceOrder = () => {
+    setIconDown({...iconDown, appareance: !(iconDown.appareance)})
     dispatch(appearanceOrderAZ(!(heroesStore.appearanceOrderAZ)))
   }
   return (
@@ -31,8 +38,8 @@ const Search = () => {
         alignRight
         onClick={handleClickSearch}
       >
-        <Dropdown.Item onClick={handleHabilitiesOrder}>Habilidades <i className="bi bi-chevron-double-up"></i></Dropdown.Item>
-        <Dropdown.Item onClick={handleAppearanceOrder}>Apariencia <i className="bi bi-chevron-double-down"></i></Dropdown.Item>
+        <Dropdown.Item onClick={handleHabilitiesOrder}>Habilidades <i className={`bi ${iconDown.habilities? 'bi-chevron-double-down':'bi-chevron-double-up'}`}></i></Dropdown.Item>
+        <Dropdown.Item onClick={handleAppearanceOrder}>Apariencia <i className={`bi ${iconDown.appareance? 'bi-chevron-double-down':'bi-chevron-double-up'}`}></i></Dropdown.Item>
       </SplitButton>
     </InputGroup>
     </div>
