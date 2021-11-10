@@ -9,3 +9,7 @@
   height: 10rem;
   object-fit: cover;
 }
+h1{
+  text-align: center;
+  color: var(--color-primary);
+}
