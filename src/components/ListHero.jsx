@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card, ListGroup } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+import {  habilitiesOrder } from '../helpers/functions'
 import './list-hero-style/listHero.css'
 
 const ListHero = () => {
-  const {renderHeroes, habilitiesOrderAZ, appearanceOrderAZ} = useSelector(state => state.heroes)
+  const {renderHeroes, habilitiesOrderAZ, appearanceOrderAZ, resSearch} = useSelector(state => state.heroes)
   const [heroes, setHeroes] = useState([])
-
-  // const HabilitiesOrderRender = () => {
-    
-  // }
+  const [res, setRes] = useState('')
   useEffect(() => {
     setHeroes(renderHeroes)
-  }, [renderHeroes])
+    setRes(resSearch)
+  }, [renderHeroes, resSearch ])
+  if(res.length > 0){
+    return (
+      <h1>{res}</h1>
+    )
+  }
   return (
     <section className='col-12 m-auto row container-card'>
       {
@@ -28,24 +32,15 @@ const ListHero = () => {
             <ListGroup className="list-group-flush mb-1">
               <details>
                 <summary><b>Habilidades</b></summary>
-                {/* {
-                  habilitiesOrderAZ ? 
-                } */}
-                <p>Inteligencia: {habilities.intelligence}. </p>
-                <p>Fuerza: {habilities.strength}.</p>
-                <p>Velocidad: {habilities.speed}.</p>
-                <p>Durabilidad: {habilities.durability}.</p>
-                <p>Poder: {habilities.power}.</p>
-                <p>Combate: {habilities.combat}.</p>
+                {
+                  habilitiesOrder(habilities, habilitiesOrderAZ)
+                }
               </details>
               <details>
                 <summary><b>Apariencia</b></summary>
-                <p>Genero: {appearance.gender}.</p>
-                <p>Raza: {appearance.race}.</p>
-                <p>Altura: {appearance.height[1]}.</p>
-                <p>Peso: {appearance.weight[1]}.</p>
-                <p>Color de ojos: {appearance['eye-color']}</p>
-                <p>Color de cabello: {appearance['hair-color']}</p>
+                {
+                  habilitiesOrder(appearance, appearanceOrderAZ)
+                }
               </details>
             </ListGroup>
           </Card>
