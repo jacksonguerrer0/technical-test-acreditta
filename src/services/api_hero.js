@@ -3,6 +3,7 @@ import { getFormaterHero } from '../helpers/functions'
 import { getResSearch, listHero, listSearchHero } from '../redux/heroDucks'
 
 export const getSuperHero = async (dispatch) => {
+  // Cambiar el token para que tú tengas mas contorl de la api
   const res = await axios.get(`https://superheroapi.com/api/643351433351950/search/Batman`)
   const listHeroData = [...res.data.results]
   const heroes = await getFormaterHero(listHeroData)
