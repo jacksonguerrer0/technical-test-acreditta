@@ -8,7 +8,6 @@ const Search = () => {
   const [search, setSearch] = useState('Batman');
   const heroesStore = useSelector(state => state.heroes)
   const dispatch = useDispatch()
-  console.log(search)
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
